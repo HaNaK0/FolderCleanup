@@ -1,0 +1,5 @@
+*.suo
+FolderCleanup/FolderCleanup/bin/
+FolderCleanup/FolderCleanup/obj/Debug/DesignTimeResolveAssemblyReferences.cache
+FolderCleanup/FolderCleanup/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+FolderCleanup/FolderCleanup/obj/

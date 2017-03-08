@@ -1,0 +1,331 @@
+﻿namespace FolderCleanup
+{
+    partial class Form1
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.FileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.QuitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.ForceRecursiveCheckbox = new System.Windows.Forms.CheckBox();
+            this.CleanPatternText = new System.Windows.Forms.RichTextBox();
+            this.RunCleanupButton = new System.Windows.Forms.Button();
+            this.SelectFolderButton = new System.Windows.Forms.Button();
+            this.SelectedFolderText = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.IgnoreListTextBox = new System.Windows.Forms.RichTextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.ConfigurationComboBox = new System.Windows.Forms.ComboBox();
+            this.ConfigurationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.FileToolStripMenuItem,
+            this.editToolStripMenuItem,
+            this.helpToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(452, 24);
+            this.menuStrip1.TabIndex = 1;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // FileToolStripMenuItem
+            // 
+            this.FileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.QuitToolStripMenuItem});
+            this.FileToolStripMenuItem.Name = "FileToolStripMenuItem";
+            this.FileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.FileToolStripMenuItem.Text = "File";
+            // 
+            // QuitToolStripMenuItem
+            // 
+            this.QuitToolStripMenuItem.Name = "QuitToolStripMenuItem";
+            this.QuitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.QuitToolStripMenuItem.Text = "Quit";
+            this.QuitToolStripMenuItem.Click += new System.EventHandler(this.QuitToolStripMenuItem_Click);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ConfigurationsToolStripMenuItem});
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.editToolStripMenuItem.Text = "Edit";
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.panel5);
+            this.panel1.Controls.Add(this.panel3);
+            this.panel1.Controls.Add(this.panel4);
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Location = new System.Drawing.Point(12, 64);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(428, 371);
+            this.panel1.TabIndex = 2;
+            // 
+            // ForceRecursiveCheckbox
+            // 
+            this.ForceRecursiveCheckbox.AutoSize = true;
+            this.ForceRecursiveCheckbox.Location = new System.Drawing.Point(87, 7);
+            this.ForceRecursiveCheckbox.Name = "ForceRecursiveCheckbox";
+            this.ForceRecursiveCheckbox.Size = new System.Drawing.Size(104, 17);
+            this.ForceRecursiveCheckbox.TabIndex = 4;
+            this.ForceRecursiveCheckbox.Text = "Force Recursive";
+            this.ForceRecursiveCheckbox.UseVisualStyleBackColor = true;
+            // 
+            // CleanPatternText
+            // 
+            this.CleanPatternText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CleanPatternText.Location = new System.Drawing.Point(3, 16);
+            this.CleanPatternText.Name = "CleanPatternText";
+            this.CleanPatternText.Size = new System.Drawing.Size(415, 145);
+            this.CleanPatternText.TabIndex = 1;
+            this.CleanPatternText.Text = "";
+            // 
+            // RunCleanupButton
+            // 
+            this.RunCleanupButton.Location = new System.Drawing.Point(6, 3);
+            this.RunCleanupButton.Name = "RunCleanupButton";
+            this.RunCleanupButton.Size = new System.Drawing.Size(75, 23);
+            this.RunCleanupButton.TabIndex = 3;
+            this.RunCleanupButton.Text = "Clean";
+            this.RunCleanupButton.UseVisualStyleBackColor = true;
+            this.RunCleanupButton.Click += new System.EventHandler(this.RunCleanupButton_Click);
+            // 
+            // SelectFolderButton
+            // 
+            this.SelectFolderButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.SelectFolderButton.Location = new System.Drawing.Point(391, 1);
+            this.SelectFolderButton.Name = "SelectFolderButton";
+            this.SelectFolderButton.Size = new System.Drawing.Size(28, 23);
+            this.SelectFolderButton.TabIndex = 1;
+            this.SelectFolderButton.Text = "...";
+            this.SelectFolderButton.UseVisualStyleBackColor = true;
+            this.SelectFolderButton.Click += new System.EventHandler(this.SelectFolderButton_Click);
+            // 
+            // SelectedFolderText
+            // 
+            this.SelectedFolderText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SelectedFolderText.Location = new System.Drawing.Point(4, 3);
+            this.SelectedFolderText.Name = "SelectedFolderText";
+            this.SelectedFolderText.Size = new System.Drawing.Size(381, 20);
+            this.SelectedFolderText.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Deletion pattern";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(0, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(73, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Ignore pattern";
+            // 
+            // IgnoreListTextBox
+            // 
+            this.IgnoreListTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.IgnoreListTextBox.Location = new System.Drawing.Point(3, 16);
+            this.IgnoreListTextBox.Name = "IgnoreListTextBox";
+            this.IgnoreListTextBox.Size = new System.Drawing.Size(415, 105);
+            this.IgnoreListTextBox.TabIndex = 2;
+            this.IgnoreListTextBox.Text = "";
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.CleanPatternText);
+            this.panel2.Location = new System.Drawing.Point(4, 39);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(421, 164);
+            this.panel2.TabIndex = 8;
+            // 
+            // panel4
+            // 
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel4.Controls.Add(this.label2);
+            this.panel4.Controls.Add(this.IgnoreListTextBox);
+            this.panel4.Location = new System.Drawing.Point(4, 209);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(421, 124);
+            this.panel4.TabIndex = 7;
+            // 
+            // panel3
+            // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.Controls.Add(this.SelectedFolderText);
+            this.panel3.Controls.Add(this.SelectFolderButton);
+            this.panel3.Location = new System.Drawing.Point(3, 3);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(422, 30);
+            this.panel3.TabIndex = 9;
+            // 
+            // panel5
+            // 
+            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel5.Controls.Add(this.RunCleanupButton);
+            this.panel5.Controls.Add(this.ForceRecursiveCheckbox);
+            this.panel5.Location = new System.Drawing.Point(4, 339);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(192, 29);
+            this.panel5.TabIndex = 8;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.ConfigurationComboBox);
+            this.panel6.Location = new System.Drawing.Point(12, 28);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(428, 30);
+            this.panel6.TabIndex = 3;
+            // 
+            // ConfigurationComboBox
+            // 
+            this.ConfigurationComboBox.DisplayMember = "(none)";
+            this.ConfigurationComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ConfigurationComboBox.FormattingEnabled = true;
+            this.ConfigurationComboBox.Items.AddRange(new object[] {
+            "Default"});
+            this.ConfigurationComboBox.Location = new System.Drawing.Point(7, 4);
+            this.ConfigurationComboBox.Name = "ConfigurationComboBox";
+            this.ConfigurationComboBox.Size = new System.Drawing.Size(415, 21);
+            this.ConfigurationComboBox.TabIndex = 5;
+            this.ConfigurationComboBox.TabStop = false;
+            // 
+            // ConfigurationsToolStripMenuItem
+            // 
+            this.ConfigurationsToolStripMenuItem.Name = "ConfigurationsToolStripMenuItem";
+            this.ConfigurationsToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.ConfigurationsToolStripMenuItem.Text = "Configuration manager";
+            this.ConfigurationsToolStripMenuItem.Click += new System.EventHandler(this.ConfigurationsToolStripMenuItem_Click);
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(452, 447);
+            this.Controls.Add(this.panel6);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MainMenuStrip = this.menuStrip1;
+            this.Name = "Form1";
+            this.Text = "Folder Cleanup";
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem FileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem QuitToolStripMenuItem;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button SelectFolderButton;
+        private System.Windows.Forms.TextBox SelectedFolderText;
+        private System.Windows.Forms.Button RunCleanupButton;
+        private System.Windows.Forms.RichTextBox CleanPatternText;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.CheckBox ForceRecursiveCheckbox;
+        private System.Windows.Forms.RichTextBox IgnoreListTextBox;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.ComboBox ConfigurationComboBox;
+        private System.Windows.Forms.ToolStripMenuItem ConfigurationsToolStripMenuItem;
+    }
+}
+
