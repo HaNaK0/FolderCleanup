@@ -169,7 +169,7 @@ namespace FolderCleanup
 
         public Configurations()
         {
-
+            configurations.Add(new Configurations.Configuration("default"));
         }
 
         public Configurations(string dataStream)

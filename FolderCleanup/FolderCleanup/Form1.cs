@@ -24,9 +24,7 @@ namespace FolderCleanup
             }
             else
             {
-                configurations = new Configurations();
-                configurations.configurations.Add(new Configurations.Configuration("default"));
-                SaveLocalConf();
+                MakeNew();
             }
             
             ConfigurationComboBox.SelectedIndex = Properties.Settings.Default.LastUsedComboIndex;
@@ -67,6 +65,7 @@ namespace FolderCleanup
             StreamWriter outstream = File.CreateText(configurationFileName);
             outstream.Write(conf);
             outstream.Close();
+            //File.SetAttributes(configurationFileName, FileAttributes.Hidden);
         }
 
         private void SelectFolderButton_Click(object sender, EventArgs e)
@@ -283,6 +282,42 @@ namespace FolderCleanup
 
             configurations.configurations[ConfigurationComboBox.SelectedIndex].ParseIgnores(textBox.Text);
             SaveLocalConf();
+        }
+
+        private void NewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (
+                MessageBox.Show(
+                    "Are you sure? This will erase all your settings and configurations.\nIf you want to make a new one but keep your old settings, export them first.",
+                    "Are you sure?", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                MakeNew();
+            }
+        }
+
+        private void MakeNew()
+        {
+            configurations = new Configurations();
+            SaveLocalConf();
+            ParseConfigs();
+        }
+
+        private void ExportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ExportDialog dialog = new ExportDialog(configurations);
+
+            dialog.ShowDialog();
+        }
+
+        private void ImportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Configuration Files | *.conf";
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                
+            }
         }
     }
 
