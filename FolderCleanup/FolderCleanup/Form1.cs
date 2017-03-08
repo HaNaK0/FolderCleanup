@@ -28,7 +28,8 @@ namespace FolderCleanup
                 configurations.configurations.Add(new Configurations.Configuration("default"));
                 SaveLocalConf();
             }
-
+            ConfigurationComboBox.SelectedIndex = Properties.Settings.Default.LastUsedComboIndex;
+            ClampComboBox();
             FolderPathTip.SetToolTip(SelectedFolderText, SelectedFolderText.Text);
 
         }
@@ -44,7 +45,7 @@ namespace FolderCleanup
                     ConfigurationComboBox.Items.Add(configurationsConfiguration.configurationName);
                 }
                 ConfigurationComboBox.SelectedIndex = selectedIndex;
-                
+                ClampComboBox();
                 CleanPatternText.Text =
                     configurations.configurations[ConfigurationComboBox.SelectedIndex].DeletitonsString();
                 IgnoreListTextBox.Text =
@@ -273,6 +274,8 @@ namespace FolderCleanup
         private void ConfigurationComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ParseConfigs();
+            Properties.Settings.Default.LastUsedComboIndex = ConfigurationComboBox.SelectedIndex;
+            Properties.Settings.Default.Save();
         }
 
         private void IgnoreListTextBox_TextChanged(object sender, EventArgs e)
@@ -281,10 +284,6 @@ namespace FolderCleanup
 
             configurations.configurations[ConfigurationComboBox.SelectedIndex].ParseIgnores(textBox.Text);
             SaveLocalConf();
-        }
-
-        private void SelectedFolderText_MouseMove(object sender, MouseEventArgs e)
-        {
         }
     }
 

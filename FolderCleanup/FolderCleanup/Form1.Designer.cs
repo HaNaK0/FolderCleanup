@@ -190,7 +190,6 @@
             this.SelectedFolderText.ReadOnly = true;
             this.SelectedFolderText.Size = new System.Drawing.Size(422, 20);
             this.SelectedFolderText.TabIndex = 0;
-            this.SelectedFolderText.MouseMove += new System.Windows.Forms.MouseEventHandler(this.SelectedFolderText_MouseMove);
             // 
             // SelectFolderButton
             // 

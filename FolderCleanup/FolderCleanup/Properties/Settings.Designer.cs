@@ -34,5 +34,17 @@ namespace FolderCleanup.Properties {
                 this["DefaultPath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int LastUsedComboIndex {
+            get {
+                return ((int)(this["LastUsedComboIndex"]));
+            }
+            set {
+                this["LastUsedComboIndex"] = value;
+            }
+        }
     }
 }
