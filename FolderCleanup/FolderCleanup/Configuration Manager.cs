@@ -18,9 +18,10 @@ namespace FolderCleanup
         private void UpdateConfigurationList()
         {
             ConfigurationList.Items.Clear();
-            
-            foreach (Configurations.Configuration configuration in configurations.configurations)
+
+            for (int i = 1; i < configurations.configurations.Count; i++)
             {
+                Configurations.Configuration configuration = configurations.configurations[i];
                 ConfigurationList.Items.Add(configuration.configurationName);
             }
         }
@@ -55,19 +56,13 @@ namespace FolderCleanup
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
-            if (ConfigurationList.SelectedIndex == 0)
-            {
-                MessageBox.Show("You cannot remove the default configuration.");
-                return;
-            }
-
-            if (ConfigurationList.SelectedIndex > 0 &&
+            if (ConfigurationList.SelectedIndex >= 0 &&
                 ConfigurationList.SelectedIndex < configurations.configurations.Count &&
                 MessageBox.Show("Are you sure you want to permanently remove configuration \"" + 
-                configurations.configurations[ConfigurationList.SelectedIndex].configurationName + "\"?", "Are you sure?"
+                configurations.configurations[ConfigurationList.SelectedIndex + 1].configurationName + "\"?", "Are you sure?"
                 , MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                configurations.configurations.RemoveAt(ConfigurationList.SelectedIndex);
+                configurations.configurations.RemoveAt(ConfigurationList.SelectedIndex + 1);
                 UpdateConfigurationList();
             }
 

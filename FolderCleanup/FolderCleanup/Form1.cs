@@ -28,9 +28,11 @@ namespace FolderCleanup
                 configurations.configurations.Add(new Configurations.Configuration("default"));
                 SaveLocalConf();
             }
+            
             ConfigurationComboBox.SelectedIndex = Properties.Settings.Default.LastUsedComboIndex;
             ClampComboBox();
             FolderPathTip.SetToolTip(SelectedFolderText, SelectedFolderText.Text);
+            ParseConfigs();
 
         }
 
