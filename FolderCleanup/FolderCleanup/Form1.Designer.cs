@@ -34,29 +34,29 @@
             this.FileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.QuitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ConfigurationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ForceRecursiveCheckbox = new System.Windows.Forms.CheckBox();
-            this.CleanPatternText = new System.Windows.Forms.RichTextBox();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.RunCleanupButton = new System.Windows.Forms.Button();
-            this.SelectFolderButton = new System.Windows.Forms.Button();
+            this.ForceRecursiveCheckbox = new System.Windows.Forms.CheckBox();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.SelectedFolderText = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.SelectFolderButton = new System.Windows.Forms.Button();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.IgnoreListTextBox = new System.Windows.Forms.RichTextBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.CleanPatternText = new System.Windows.Forms.RichTextBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.ConfigurationComboBox = new System.Windows.Forms.ComboBox();
-            this.ConfigurationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,7 +88,7 @@
             // QuitToolStripMenuItem
             // 
             this.QuitToolStripMenuItem.Name = "QuitToolStripMenuItem";
-            this.QuitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.QuitToolStripMenuItem.Size = new System.Drawing.Size(97, 22);
             this.QuitToolStripMenuItem.Text = "Quit";
             this.QuitToolStripMenuItem.Click += new System.EventHandler(this.QuitToolStripMenuItem_Click);
             // 
@@ -99,6 +99,13 @@
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
+            // 
+            // ConfigurationsToolStripMenuItem
+            // 
+            this.ConfigurationsToolStripMenuItem.Name = "ConfigurationsToolStripMenuItem";
+            this.ConfigurationsToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.ConfigurationsToolStripMenuItem.Text = "Configuration manager";
+            this.ConfigurationsToolStripMenuItem.Click += new System.EventHandler(this.ConfigurationsToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -120,26 +127,15 @@
             this.panel1.Size = new System.Drawing.Size(428, 371);
             this.panel1.TabIndex = 2;
             // 
-            // ForceRecursiveCheckbox
+            // panel5
             // 
-            this.ForceRecursiveCheckbox.AutoSize = true;
-            this.ForceRecursiveCheckbox.Location = new System.Drawing.Point(87, 7);
-            this.ForceRecursiveCheckbox.Name = "ForceRecursiveCheckbox";
-            this.ForceRecursiveCheckbox.Size = new System.Drawing.Size(104, 17);
-            this.ForceRecursiveCheckbox.TabIndex = 4;
-            this.ForceRecursiveCheckbox.Text = "Force Recursive";
-            this.ForceRecursiveCheckbox.UseVisualStyleBackColor = true;
-            // 
-            // CleanPatternText
-            // 
-            this.CleanPatternText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.CleanPatternText.Location = new System.Drawing.Point(3, 16);
-            this.CleanPatternText.Name = "CleanPatternText";
-            this.CleanPatternText.Size = new System.Drawing.Size(415, 145);
-            this.CleanPatternText.TabIndex = 1;
-            this.CleanPatternText.Text = "";
+            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel5.Controls.Add(this.RunCleanupButton);
+            this.panel5.Controls.Add(this.ForceRecursiveCheckbox);
+            this.panel5.Location = new System.Drawing.Point(4, 339);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(192, 29);
+            this.panel5.TabIndex = 8;
             // 
             // RunCleanupButton
             // 
@@ -150,6 +146,36 @@
             this.RunCleanupButton.Text = "Clean";
             this.RunCleanupButton.UseVisualStyleBackColor = true;
             this.RunCleanupButton.Click += new System.EventHandler(this.RunCleanupButton_Click);
+            // 
+            // ForceRecursiveCheckbox
+            // 
+            this.ForceRecursiveCheckbox.AutoSize = true;
+            this.ForceRecursiveCheckbox.Location = new System.Drawing.Point(87, 7);
+            this.ForceRecursiveCheckbox.Name = "ForceRecursiveCheckbox";
+            this.ForceRecursiveCheckbox.Size = new System.Drawing.Size(104, 17);
+            this.ForceRecursiveCheckbox.TabIndex = 4;
+            this.ForceRecursiveCheckbox.Text = "Force Recursive";
+            this.ForceRecursiveCheckbox.UseVisualStyleBackColor = true;
+            // 
+            // panel3
+            // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.Controls.Add(this.SelectedFolderText);
+            this.panel3.Controls.Add(this.SelectFolderButton);
+            this.panel3.Location = new System.Drawing.Point(3, 3);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(422, 30);
+            this.panel3.TabIndex = 9;
+            // 
+            // SelectedFolderText
+            // 
+            this.SelectedFolderText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SelectedFolderText.Location = new System.Drawing.Point(4, 3);
+            this.SelectedFolderText.Name = "SelectedFolderText";
+            this.SelectedFolderText.Size = new System.Drawing.Size(381, 20);
+            this.SelectedFolderText.TabIndex = 0;
             // 
             // SelectFolderButton
             // 
@@ -162,24 +188,16 @@
             this.SelectFolderButton.UseVisualStyleBackColor = true;
             this.SelectFolderButton.Click += new System.EventHandler(this.SelectFolderButton_Click);
             // 
-            // SelectedFolderText
+            // panel4
             // 
-            this.SelectedFolderText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SelectedFolderText.Location = new System.Drawing.Point(4, 3);
-            this.SelectedFolderText.Name = "SelectedFolderText";
-            this.SelectedFolderText.Size = new System.Drawing.Size(381, 20);
-            this.SelectedFolderText.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Deletion pattern";
+            this.panel4.Controls.Add(this.label2);
+            this.panel4.Controls.Add(this.IgnoreListTextBox);
+            this.panel4.Location = new System.Drawing.Point(4, 209);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(421, 124);
+            this.panel4.TabIndex = 7;
             // 
             // label2
             // 
@@ -200,6 +218,7 @@
             this.IgnoreListTextBox.Size = new System.Drawing.Size(415, 105);
             this.IgnoreListTextBox.TabIndex = 2;
             this.IgnoreListTextBox.Text = "";
+            this.IgnoreListTextBox.TextChanged += new System.EventHandler(this.IgnoreListTextBox_TextChanged);
             // 
             // panel2
             // 
@@ -213,37 +232,27 @@
             this.panel2.Size = new System.Drawing.Size(421, 164);
             this.panel2.TabIndex = 8;
             // 
-            // panel4
+            // label1
             // 
-            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Deletion pattern";
+            // 
+            // CleanPatternText
+            // 
+            this.CleanPatternText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel4.Controls.Add(this.label2);
-            this.panel4.Controls.Add(this.IgnoreListTextBox);
-            this.panel4.Location = new System.Drawing.Point(4, 209);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(421, 124);
-            this.panel4.TabIndex = 7;
-            // 
-            // panel3
-            // 
-            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel3.Controls.Add(this.SelectedFolderText);
-            this.panel3.Controls.Add(this.SelectFolderButton);
-            this.panel3.Location = new System.Drawing.Point(3, 3);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(422, 30);
-            this.panel3.TabIndex = 9;
-            // 
-            // panel5
-            // 
-            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.panel5.Controls.Add(this.RunCleanupButton);
-            this.panel5.Controls.Add(this.ForceRecursiveCheckbox);
-            this.panel5.Location = new System.Drawing.Point(4, 339);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(192, 29);
-            this.panel5.TabIndex = 8;
+            this.CleanPatternText.Location = new System.Drawing.Point(3, 16);
+            this.CleanPatternText.Name = "CleanPatternText";
+            this.CleanPatternText.Size = new System.Drawing.Size(415, 145);
+            this.CleanPatternText.TabIndex = 1;
+            this.CleanPatternText.Text = "";
+            this.CleanPatternText.TextChanged += new System.EventHandler(this.CleanPatternText_TextChanged);
             // 
             // panel6
             // 
@@ -265,13 +274,7 @@
             this.ConfigurationComboBox.Size = new System.Drawing.Size(415, 21);
             this.ConfigurationComboBox.TabIndex = 5;
             this.ConfigurationComboBox.TabStop = false;
-            // 
-            // ConfigurationsToolStripMenuItem
-            // 
-            this.ConfigurationsToolStripMenuItem.Name = "ConfigurationsToolStripMenuItem";
-            this.ConfigurationsToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
-            this.ConfigurationsToolStripMenuItem.Text = "Configuration manager";
-            this.ConfigurationsToolStripMenuItem.Click += new System.EventHandler(this.ConfigurationsToolStripMenuItem_Click);
+            this.ConfigurationComboBox.DropDownClosed += new System.EventHandler(this.ConfigurationComboBox_SelectedIndexChanged);
             // 
             // Form1
             // 
@@ -288,14 +291,14 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

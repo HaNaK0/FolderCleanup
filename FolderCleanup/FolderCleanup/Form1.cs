@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO;
 
@@ -6,10 +7,60 @@ namespace FolderCleanup
 {
     public partial class Form1 : Form
     {
+        private string configurationFileName = "configurations.conf";
+        private Configurations configurations;
+        private static string commentPrefix = "##";
         public Form1()
         {
             InitializeComponent();
             ConfigurationComboBox.SelectedIndex = 0;
+
+            if (File.Exists(configurationFileName) == true)
+            {
+                string fileContent = File.ReadAllText(configurationFileName);
+                configurations = new Configurations(fileContent);
+                ParseConfigs();
+            }
+            else
+            {
+                configurations = new Configurations();
+                configurations.configurations.Add(new Configurations.Configuration("default"));
+                SaveLocalConf();
+            }
+
+        }
+
+        private void ParseConfigs()
+        {
+            if (configurations != null)
+            {
+                int selectedIndex = ConfigurationComboBox.SelectedIndex;
+                ConfigurationComboBox.Items.Clear();
+                foreach (Configurations.Configuration configurationsConfiguration in configurations.configurations)
+                {
+                    ConfigurationComboBox.Items.Add(configurationsConfiguration.configurationName);
+                }
+                ConfigurationComboBox.SelectedIndex = selectedIndex;
+                
+                CleanPatternText.Text =
+                    configurations.configurations[ConfigurationComboBox.SelectedIndex].DeletitonsString();
+                IgnoreListTextBox.Text =
+                    configurations.configurations[ConfigurationComboBox.SelectedIndex].IgnoresString();
+            } 
+        }
+
+        private void SaveLocalConf()
+        {
+            if (File.Exists(configurationFileName) == true)
+            {
+                File.Delete(configurationFileName);
+            }
+            
+            string conf = configurations.ToString();
+
+            StreamWriter outstream = File.CreateText(configurationFileName);
+            outstream.Write(conf);
+            outstream.Close();
         }
 
         private void SelectFolderButton_Click(object sender, EventArgs e)
@@ -42,37 +93,26 @@ namespace FolderCleanup
             }
 
             StartDelete(target, patternRaw);
-
-            //using (PowerShell shellInstance = PowerShell.Create())
-            //{
-            //    shellInstance.AddScript("cd \"" + target + "\"");
-            //    string formatedPattern = FormatPattern(patternRaw);
-            //    string argument = "get-childitem -include " + formatedPattern + " -recurse | foreach($_) {remove-item " +
-            //                      GetShouldForce() + "$_.fullname }";
-            //    shellInstance.AddScript(argument);
-            //    shellInstance.Invoke();
-
-            //    if (shellInstance.Streams.Error.Count > 0)
-            //    {
-            //        string errors = "Error occured:\n";
-
-            //        foreach (ErrorRecord errorRecord in shellInstance.Streams.Error)
-            //        {
-            //            errors += errorRecord.ToString() + "\n";
-            //        }
-
-            //        MessageBox.Show(errors);
-            //    }
-            //}
-
-
         }
 
         private void StartDelete(string target, string patternRaw)
         {
-            string[] patternList = patternRaw.Split('\n');
+            string[] patternList = GetPatternList(patternRaw);
 
             RecursiveDelete(target, patternList);
+        }
+
+        private string[] GetPatternList(string patternRaw)
+        {
+            List<string> resultList = new List<string>(); 
+            foreach (string line in patternRaw.Split('\n'))
+            {
+                if (line.Length > 1 && line.Substring(0,2) != commentPrefix)
+                {
+                    resultList.Add(line);
+                }
+            }
+            return resultList.ToArray();
         }
 
         private void RecursiveDelete(string target, string[] patternList)
@@ -116,7 +156,7 @@ namespace FolderCleanup
                 {
                     if (ShouldIgnore(dir) == false && (Directory.GetDirectories(dir).Length == 0 && Directory.GetFiles(dir).Length == 0 ||
                         ForceRecursiveCheckbox.Checked == true || 
-                        MessageBox.Show("\"" + dir + "\"" + " is not an empty directory, do you really want to delete it?", "Confirm delete", MessageBoxButtons.OKCancel) == DialogResult.OK))
+                        MessageBox.Show("\"" + dir + "\"" + " is not an empty directory, do you really want to delete it?", "Confirm delete", MessageBoxButtons.YesNo) == DialogResult.OK))
                     {
                         OpenFilePermissions(dir);
                         Directory.Delete(dir, true);
@@ -184,30 +224,6 @@ namespace FolderCleanup
             }
         }
 
-        private string GetShouldForce()
-        {
-            if (ForceRecursiveCheckbox.Checked == true)
-            {
-                return "-force ";
-            }
-
-            return "";
-        }
-
-        private string FormatPattern(string patternRaw)
-        {
-            string[] arguments = patternRaw.Split('\n');
-
-            string result = "";
-
-            foreach (string argument in arguments)
-            {
-                result += "\"" + argument + "\"" + ", ";
-            }
-
-            return result.Substring(0, result.Length - 2);
-        }
-
         private void QuitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -215,12 +231,49 @@ namespace FolderCleanup
 
         private void ConfigurationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Configuration_Manager manager = new Configuration_Manager();
+            Configuration_Manager manager = new Configuration_Manager(new Configurations(configurations));
 
             if (manager.ShowDialog() == DialogResult.OK)
             {
+                configurations = manager.configurations;
+                ClampComboBox();
+                SaveLocalConf();
+                ParseConfigs();
                 
             }
+        }
+
+        private void ClampComboBox()
+        {
+            if (ConfigurationComboBox.SelectedIndex < 0)
+            {
+                ConfigurationComboBox.SelectedIndex = 0;
+            }
+            else if (ConfigurationComboBox.SelectedIndex > configurations.configurations.Count - 1)
+            {
+                ConfigurationComboBox.SelectedIndex = configurations.configurations.Count - 1;
+            }
+        }
+
+        private void CleanPatternText_TextChanged(object sender, EventArgs e)
+        {
+            RichTextBox textBox = sender as RichTextBox;
+
+            configurations.configurations[ConfigurationComboBox.SelectedIndex].ParseDeletions(textBox.Text);
+            SaveLocalConf();
+        }
+
+        private void ConfigurationComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ParseConfigs();
+        }
+
+        private void IgnoreListTextBox_TextChanged(object sender, EventArgs e)
+        {
+            RichTextBox textBox = sender as RichTextBox;
+
+            configurations.configurations[ConfigurationComboBox.SelectedIndex].ParseIgnores(textBox.Text);
+            SaveLocalConf();
         }
     }
 
