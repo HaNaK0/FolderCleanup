@@ -51,6 +51,7 @@
             this.CleanPatternText = new System.Windows.Forms.RichTextBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.ConfigurationComboBox = new System.Windows.Forms.ComboBox();
+            this.ExportButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -73,7 +74,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(452, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(493, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -124,17 +125,18 @@
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Location = new System.Drawing.Point(12, 64);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(428, 371);
+            this.panel1.Size = new System.Drawing.Size(469, 449);
             this.panel1.TabIndex = 2;
             // 
             // panel5
             // 
             this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel5.Controls.Add(this.ExportButton);
             this.panel5.Controls.Add(this.RunCleanupButton);
             this.panel5.Controls.Add(this.ForceRecursiveCheckbox);
-            this.panel5.Location = new System.Drawing.Point(4, 339);
+            this.panel5.Location = new System.Drawing.Point(4, 417);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(192, 29);
+            this.panel5.Size = new System.Drawing.Size(323, 29);
             this.panel5.TabIndex = 8;
             // 
             // RunCleanupButton
@@ -165,7 +167,7 @@
             this.panel3.Controls.Add(this.SelectFolderButton);
             this.panel3.Location = new System.Drawing.Point(3, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(422, 30);
+            this.panel3.Size = new System.Drawing.Size(463, 30);
             this.panel3.TabIndex = 9;
             // 
             // SelectedFolderText
@@ -174,13 +176,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SelectedFolderText.Location = new System.Drawing.Point(4, 3);
             this.SelectedFolderText.Name = "SelectedFolderText";
-            this.SelectedFolderText.Size = new System.Drawing.Size(381, 20);
+            this.SelectedFolderText.Size = new System.Drawing.Size(422, 20);
             this.SelectedFolderText.TabIndex = 0;
             // 
             // SelectFolderButton
             // 
             this.SelectFolderButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.SelectFolderButton.Location = new System.Drawing.Point(391, 1);
+            this.SelectFolderButton.Location = new System.Drawing.Point(432, 1);
             this.SelectFolderButton.Name = "SelectFolderButton";
             this.SelectFolderButton.Size = new System.Drawing.Size(28, 23);
             this.SelectFolderButton.TabIndex = 1;
@@ -194,9 +196,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.Controls.Add(this.label2);
             this.panel4.Controls.Add(this.IgnoreListTextBox);
-            this.panel4.Location = new System.Drawing.Point(4, 209);
+            this.panel4.Location = new System.Drawing.Point(4, 272);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(421, 124);
+            this.panel4.Size = new System.Drawing.Size(462, 139);
             this.panel4.TabIndex = 7;
             // 
             // label2
@@ -215,7 +217,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.IgnoreListTextBox.Location = new System.Drawing.Point(3, 16);
             this.IgnoreListTextBox.Name = "IgnoreListTextBox";
-            this.IgnoreListTextBox.Size = new System.Drawing.Size(415, 105);
+            this.IgnoreListTextBox.Size = new System.Drawing.Size(456, 120);
             this.IgnoreListTextBox.TabIndex = 2;
             this.IgnoreListTextBox.Text = "";
             this.IgnoreListTextBox.TextChanged += new System.EventHandler(this.IgnoreListTextBox_TextChanged);
@@ -229,7 +231,7 @@
             this.panel2.Controls.Add(this.CleanPatternText);
             this.panel2.Location = new System.Drawing.Point(4, 39);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(421, 164);
+            this.panel2.Size = new System.Drawing.Size(462, 227);
             this.panel2.TabIndex = 8;
             // 
             // label1
@@ -249,7 +251,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CleanPatternText.Location = new System.Drawing.Point(3, 16);
             this.CleanPatternText.Name = "CleanPatternText";
-            this.CleanPatternText.Size = new System.Drawing.Size(415, 145);
+            this.CleanPatternText.Size = new System.Drawing.Size(456, 208);
             this.CleanPatternText.TabIndex = 1;
             this.CleanPatternText.Text = "";
             this.CleanPatternText.TextChanged += new System.EventHandler(this.CleanPatternText_TextChanged);
@@ -276,16 +278,27 @@
             this.ConfigurationComboBox.TabStop = false;
             this.ConfigurationComboBox.DropDownClosed += new System.EventHandler(this.ConfigurationComboBox_SelectedIndexChanged);
             // 
+            // ExportButton
+            // 
+            this.ExportButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ExportButton.Location = new System.Drawing.Point(245, 3);
+            this.ExportButton.Name = "ExportButton";
+            this.ExportButton.Size = new System.Drawing.Size(75, 23);
+            this.ExportButton.TabIndex = 5;
+            this.ExportButton.Text = "Export...";
+            this.ExportButton.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(452, 447);
+            this.ClientSize = new System.Drawing.Size(493, 525);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Folder Cleanup";
             this.menuStrip1.ResumeLayout(false);
@@ -329,6 +342,7 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.ComboBox ConfigurationComboBox;
         private System.Windows.Forms.ToolStripMenuItem ConfigurationsToolStripMenuItem;
+        private System.Windows.Forms.Button ExportButton;
     }
 }
 

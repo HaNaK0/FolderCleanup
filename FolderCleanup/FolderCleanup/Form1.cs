@@ -14,6 +14,7 @@ namespace FolderCleanup
         {
             InitializeComponent();
             ConfigurationComboBox.SelectedIndex = 0;
+            SelectedFolderText.Text = Properties.Settings.Default.DefaultPath;
 
             if (File.Exists(configurationFileName) == true)
             {
@@ -66,11 +67,14 @@ namespace FolderCleanup
         private void SelectFolderButton_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog dialog = new FolderBrowserDialog();
-
+            dialog.SelectedPath = Properties.Settings.Default.DefaultPath;
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 string target = dialog.SelectedPath;
                 SelectedFolderText.Text = target;
+                Properties.Settings.Default.DefaultPath = target;
+                Properties.Settings.Default.Save();
+                
             }
         }
 
