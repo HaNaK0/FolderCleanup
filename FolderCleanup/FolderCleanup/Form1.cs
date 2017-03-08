@@ -29,6 +29,8 @@ namespace FolderCleanup
                 SaveLocalConf();
             }
 
+            FolderPathTip.SetToolTip(SelectedFolderText, SelectedFolderText.Text);
+
         }
 
         private void ParseConfigs()
@@ -72,6 +74,7 @@ namespace FolderCleanup
             {
                 string target = dialog.SelectedPath;
                 SelectedFolderText.Text = target;
+                FolderPathTip.SetToolTip(SelectedFolderText, SelectedFolderText.Text);
                 Properties.Settings.Default.DefaultPath = target;
                 Properties.Settings.Default.Save();
                 
@@ -278,6 +281,10 @@ namespace FolderCleanup
 
             configurations.configurations[ConfigurationComboBox.SelectedIndex].ParseIgnores(textBox.Text);
             SaveLocalConf();
+        }
+
+        private void SelectedFolderText_MouseMove(object sender, MouseEventArgs e)
+        {
         }
     }
 

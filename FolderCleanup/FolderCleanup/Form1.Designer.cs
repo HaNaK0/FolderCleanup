@@ -38,6 +38,7 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.ExportButton = new System.Windows.Forms.Button();
             this.RunCleanupButton = new System.Windows.Forms.Button();
             this.ForceRecursiveCheckbox = new System.Windows.Forms.CheckBox();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -51,7 +52,7 @@
             this.CleanPatternText = new System.Windows.Forms.RichTextBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.ConfigurationComboBox = new System.Windows.Forms.ComboBox();
-            this.ExportButton = new System.Windows.Forms.Button();
+            this.FolderPathTip = new System.Windows.Forms.ToolTip(this.components);
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -139,6 +140,16 @@
             this.panel5.Size = new System.Drawing.Size(323, 29);
             this.panel5.TabIndex = 8;
             // 
+            // ExportButton
+            // 
+            this.ExportButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ExportButton.Location = new System.Drawing.Point(245, 3);
+            this.ExportButton.Name = "ExportButton";
+            this.ExportButton.Size = new System.Drawing.Size(75, 23);
+            this.ExportButton.TabIndex = 5;
+            this.ExportButton.Text = "Export...";
+            this.ExportButton.UseVisualStyleBackColor = true;
+            // 
             // RunCleanupButton
             // 
             this.RunCleanupButton.Location = new System.Drawing.Point(6, 3);
@@ -176,8 +187,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SelectedFolderText.Location = new System.Drawing.Point(4, 3);
             this.SelectedFolderText.Name = "SelectedFolderText";
+            this.SelectedFolderText.ReadOnly = true;
             this.SelectedFolderText.Size = new System.Drawing.Size(422, 20);
             this.SelectedFolderText.TabIndex = 0;
+            this.SelectedFolderText.MouseMove += new System.Windows.Forms.MouseEventHandler(this.SelectedFolderText_MouseMove);
             // 
             // SelectFolderButton
             // 
@@ -261,11 +274,13 @@
             this.panel6.Controls.Add(this.ConfigurationComboBox);
             this.panel6.Location = new System.Drawing.Point(12, 28);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(428, 30);
+            this.panel6.Size = new System.Drawing.Size(469, 30);
             this.panel6.TabIndex = 3;
             // 
             // ConfigurationComboBox
             // 
+            this.ConfigurationComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ConfigurationComboBox.DisplayMember = "(none)";
             this.ConfigurationComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ConfigurationComboBox.FormattingEnabled = true;
@@ -273,20 +288,16 @@
             "Default"});
             this.ConfigurationComboBox.Location = new System.Drawing.Point(7, 4);
             this.ConfigurationComboBox.Name = "ConfigurationComboBox";
-            this.ConfigurationComboBox.Size = new System.Drawing.Size(415, 21);
+            this.ConfigurationComboBox.Size = new System.Drawing.Size(456, 21);
             this.ConfigurationComboBox.TabIndex = 5;
             this.ConfigurationComboBox.TabStop = false;
             this.ConfigurationComboBox.DropDownClosed += new System.EventHandler(this.ConfigurationComboBox_SelectedIndexChanged);
             // 
-            // ExportButton
+            // FolderPathTip
             // 
-            this.ExportButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ExportButton.Location = new System.Drawing.Point(245, 3);
-            this.ExportButton.Name = "ExportButton";
-            this.ExportButton.Size = new System.Drawing.Size(75, 23);
-            this.ExportButton.TabIndex = 5;
-            this.ExportButton.Text = "Export...";
-            this.ExportButton.UseVisualStyleBackColor = true;
+            this.FolderPathTip.AutoPopDelay = 5000;
+            this.FolderPathTip.InitialDelay = 50;
+            this.FolderPathTip.ReshowDelay = 1;
             // 
             // Form1
             // 
@@ -343,6 +354,7 @@
         private System.Windows.Forms.ComboBox ConfigurationComboBox;
         private System.Windows.Forms.ToolStripMenuItem ConfigurationsToolStripMenuItem;
         private System.Windows.Forms.Button ExportButton;
+        private System.Windows.Forms.ToolTip FolderPathTip;
     }
 }
 
