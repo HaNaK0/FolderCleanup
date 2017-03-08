@@ -10,6 +10,7 @@ namespace FolderCleanup
         private string configurationFileName = "configurations.conf";
         private Configurations configurations;
         private static string commentPrefix = "##";
+
         public Form1()
         {
             InitializeComponent();
@@ -26,8 +27,17 @@ namespace FolderCleanup
             {
                 MakeNew();
             }
+
+            try
+            {
+                ConfigurationComboBox.SelectedIndex = Properties.Settings.Default.LastUsedComboIndex;
+            }
+            catch (Exception)
+            {
+
+                ConfigurationComboBox.SelectedIndex = 0;
+            }
             
-            ConfigurationComboBox.SelectedIndex = Properties.Settings.Default.LastUsedComboIndex;
             ClampComboBox();
             FolderPathTip.SetToolTip(SelectedFolderText, SelectedFolderText.Text);
             ParseConfigs();
