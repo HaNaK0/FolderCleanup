@@ -127,13 +127,6 @@ namespace FolderCleanup
         {
             CheckDeleteFolders(target, patternList);
             CheckDeleteFiles(target, patternList);
-
-            string[] dirs = Directory.GetDirectories(target);
-
-            foreach (string dir in dirs)
-            {
-                RecursiveDelete(dir, patternList);
-            }
         }
 
         private void CheckDeleteFiles(string target, string[] patternList)
@@ -164,7 +157,7 @@ namespace FolderCleanup
                 {
                     if (ShouldIgnore(dir) == false && (Directory.GetDirectories(dir).Length == 0 && Directory.GetFiles(dir).Length == 0 ||
                         ForceRecursiveCheckbox.Checked == true || 
-                        MessageBox.Show("\"" + dir + "\"" + " is not an empty directory, do you really want to delete it?", "Confirm delete", MessageBoxButtons.YesNo) == DialogResult.OK))
+                        MessageBox.Show("\"" + dir + "\"" + " is not an empty directory, do you really want to delete it?", "Confirm delete", MessageBoxButtons.YesNo) == DialogResult.Yes))
                     {
                         OpenFilePermissions(dir);
                         Directory.Delete(dir, true);
@@ -179,12 +172,16 @@ namespace FolderCleanup
 
             foreach (string ignore in ignoreList)
             {
-                int startPoint = SelectedFolderText.Text.Length + 1;
-                string relativePath = path.Substring(startPoint, path.Length - (startPoint));
-                if (CheckIgnore(relativePath, ignore) == true)
+                if (ignore != "")
                 {
-                    return true;
+                    int startPoint = SelectedFolderText.Text.Length + 1;
+                    string relativePath = path.Substring(startPoint, path.Length - (startPoint));
+                    if (CheckIgnore(relativePath, ignore) == true)
+                    {
+                        return true;
+                    }
                 }
+                
             }
             return false;
         }
