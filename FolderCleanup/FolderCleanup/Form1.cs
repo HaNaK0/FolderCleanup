@@ -326,8 +326,11 @@ namespace FolderCleanup
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                
+                ImportHandler importHandler = new ImportHandler(dialog.FileName, configurations);
+                importHandler.Run();
             }
+            SaveLocalConf();
+            ParseConfigs();
         }
     }
 
