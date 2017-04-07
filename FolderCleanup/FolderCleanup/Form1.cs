@@ -41,7 +41,7 @@ namespace FolderCleanup
             ClampComboBox();
             FolderPathTip.SetToolTip(SelectedFolderText, SelectedFolderText.Text);
             ParseConfigs();
-
+            IgnoreListTextBox.Text = "WIP";
         }
 
         private void ParseConfigs()
@@ -81,7 +81,7 @@ namespace FolderCleanup
         private void SelectFolderButton_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog dialog = new FolderBrowserDialog();
-            dialog.SelectedPath = Properties.Settings.Default.DefaultPath;
+            dialog.SelectedPath = SelectedFolderText.Text;
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 string target = dialog.SelectedPath;
@@ -111,7 +111,12 @@ namespace FolderCleanup
                 return;
             }
 
-            StartDelete(target, patternRaw);
+            if (MessageBox.Show("Are you sure you want to remove all items matching the pattern?", "Are you sure?",
+                MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+
+                StartDelete(target, patternRaw);
+            }
         }
 
         private void StartDelete(string target, string patternRaw)
@@ -142,39 +147,60 @@ namespace FolderCleanup
 
         private void CheckDeleteFiles(string target, string[] patternList)
         {
+
+            string[] files = GetFiles(target, patternList);
+
+            foreach (string file in files)
+            {
+                if (ShouldIgnore(file) == false)
+                {
+                    File.SetAttributes(file, FileAttributes.Normal);
+                    File.Delete(file);
+                }
+               
+            }
+            
+        }
+
+        private string[] GetFiles(string target, string[] patternList)
+        {
+            List<string> files = new List<string>();
             foreach (string pattern in patternList)
             {
-                string[] files = Directory.GetFiles(target, pattern, SearchOption.AllDirectories);
-
-                foreach (string file in files)
-                {
-                    if (ShouldIgnore(file) == false)
-                    {
-                        File.SetAttributes(file, FileAttributes.Normal);
-                        File.Delete(file);
-                    }
-                   
-                }
+                string[] localFiles = Directory.GetFiles(target, pattern, SearchOption.AllDirectories);
+                files.AddRange(localFiles);
             }
+
+            return files.ToArray();
         }
 
         private void CheckDeleteFolders(string target, string[] patternList)
         {
-            foreach (string pattern in patternList)
-            {
-                string[] dirs = Directory.GetDirectories(target, pattern, SearchOption.AllDirectories);
 
-                foreach (string dir in dirs)
+            string[] dirs = GetDirs(target,patternList);
+
+            foreach (string dir in dirs)
+            {
+                if (ShouldIgnore(dir) == false && (Directory.GetDirectories(dir).Length == 0 && Directory.GetFiles(dir).Length == 0 ||
+                    ForceRecursiveCheckbox.Checked == true || 
+                    MessageBox.Show("\"" + dir + "\"" + " is not an empty directory, do you really want to delete it?", "Confirm delete", MessageBoxButtons.YesNo) == DialogResult.Yes))
                 {
-                    if (ShouldIgnore(dir) == false && (Directory.GetDirectories(dir).Length == 0 && Directory.GetFiles(dir).Length == 0 ||
-                        ForceRecursiveCheckbox.Checked == true || 
-                        MessageBox.Show("\"" + dir + "\"" + " is not an empty directory, do you really want to delete it?", "Confirm delete", MessageBoxButtons.YesNo) == DialogResult.Yes))
-                    {
-                        OpenFilePermissions(dir);
-                        Directory.Delete(dir, true);
-                    }
+                    OpenFilePermissions(dir);
+                    Directory.Delete(dir, true);
                 }
             }
+        }
+
+        private string[] GetDirs(string target, string[] patternList)
+        {
+            List<string> dirs = new List<string>();
+            foreach (string pattern in patternList)
+            {
+                string[] localDirs = Directory.GetDirectories(target, pattern, SearchOption.AllDirectories);
+                dirs.AddRange(localDirs);
+            }
+
+            return dirs.ToArray();
         }
 
         private bool ShouldIgnore(string path)
@@ -331,6 +357,105 @@ namespace FolderCleanup
             }
             SaveLocalConf();
             ParseConfigs();
+        }
+
+        private void ExportButton_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                string target = dialog.SelectedPath;
+                ExportTo(target);
+            }
+        }
+
+        private void ExportTo(string targetDir)
+        {
+            string target = SelectedFolderText.Text;
+
+            if (target == "")
+            {
+                MessageBox.Show("Please choose a source directory.");
+                return;
+            }
+            else if (Directory.Exists(target) == false)
+            {
+                MessageBox.Show("Source directory does not exist.");
+                return;
+            }
+
+            if (Directory.Exists(targetDir) == false)
+            {
+                MessageBox.Show("Target directory does not exist.");
+                return;
+            }
+            if (Directory.GetFiles(targetDir).Length != 0 || Directory.GetDirectories(targetDir).Length != 0)
+            {
+                MessageBox.Show("Target directory is not empty.");
+                return;
+            }
+
+            string patternRaw = CleanPatternText.Text;
+
+            if (patternRaw == "")
+            {
+                MessageBox.Show("Please choose a pattern for cleaning.");
+                return;
+            }
+
+            string[] patternList = GetPatternList(patternRaw);
+
+            string[] files = RecursiveGetFiles(target, patternList);
+
+            CopyFiles(targetDir,target, files);
+        }
+
+        private void CopyFiles(string targetDir, string sourceDir, string[] files)
+        {
+            foreach (string file in files)
+            {
+                string newName = targetDir + file.Replace(sourceDir,"");
+                (new FileInfo(newName)).Directory.Create();
+                File.Copy(file,newName);
+            }
+        }
+
+        private string[] RecursiveGetFiles(string target, string[] patternList)
+        {
+            List<string> ignoreFiles = new List<string>();
+            List<string> ignoreDirs = new List<string>();
+
+            foreach (string pattern in patternList)
+            {
+                ignoreFiles.AddRange(Directory.GetFiles(target,pattern));
+                ignoreDirs.AddRange(Directory.GetDirectories(target,pattern));
+            }
+
+            string[] dirFiles = Directory.GetFiles(target);
+
+            List<string> files = new List<string>();
+
+            foreach (string dirFile in dirFiles)
+            {
+                if (ignoreFiles.Contains(dirFile) == false && ShouldIgnore(dirFile) == false)
+                {
+                    files.Add(dirFile);
+                }
+            }
+
+            string[] dirDirs = Directory.GetDirectories(target);
+            
+            List<string> dirs = new List<string>();
+
+            foreach (string dir in dirDirs)
+            {
+                if (ignoreDirs.Contains(dir) == false && ShouldIgnore(dir) == false)
+                {
+                    files.AddRange(RecursiveGetFiles(dir, patternList));
+                }
+            }
+
+            return files.ToArray();
         }
     }
 
