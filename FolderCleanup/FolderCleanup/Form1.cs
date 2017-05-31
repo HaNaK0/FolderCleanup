@@ -8,6 +8,7 @@ namespace FolderCleanup
     public partial class Form1 : Form
     {
         private string configurationFileName = "configurations.conf";
+        private string lastExportPath;
         private Configurations configurations;
         private static string commentPrefix = "##";
 
@@ -16,6 +17,7 @@ namespace FolderCleanup
             InitializeComponent();
             ConfigurationComboBox.SelectedIndex = 0;
             SelectedFolderText.Text = Properties.Settings.Default.DefaultPath;
+            lastExportPath = Properties.Settings.Default.LastUsedExportPath;
 
             if (File.Exists(configurationFileName) == true)
             {
@@ -362,10 +364,15 @@ namespace FolderCleanup
         private void ExportButton_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.SelectedPath = lastExportPath;
+            
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 string target = dialog.SelectedPath;
+                Properties.Settings.Default.LastUsedExportPath = target;
+                lastExportPath = target;
                 ExportTo(target);
+                MessageBox.Show("Export finished!");
             }
         }
 
